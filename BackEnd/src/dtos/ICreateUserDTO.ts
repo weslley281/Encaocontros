@@ -4,6 +4,7 @@ export interface ICreateUserDTO {
   phone: string;
   email: string;
   birthday: Date;
+  cpf?: string;
   user_type: string;
   password?: string;
 }

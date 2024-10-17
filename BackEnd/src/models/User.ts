@@ -1,51 +1,36 @@
-import { DataTypes } from 'sequelize';
-import { connection } from '../config/database';
+class User {
+  user_id: number;
+  user_type: string;
+  name: string;
+  phone: string;
+  email: string;
+  cpf: string;
+  birthday: Date;
+  password: string;
 
-const userModel = connection.define('users', {
-  user_id: {
-    type: DataTypes.INTEGER.UNSIGNED,
-    autoIncrement: true,
-    primaryKey: true,
-    allowNull: false,
-  },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  phone: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: false
-  },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-  },
-  user_type: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-  },
-  cpf: {
-    type: DataTypes.STRING,
-    allowNull: true,
-    unique: true,
-  },
-  birthday: {
-    type: DataTypes.DATE,
-    allowNull: true,
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-});
+  constructor(
+    user_id: number,
+    user_type: string,
+    name: string,
+    phone: string,
+    email: string,
+    cpf: string,
+    birthday: Date,
+    password: string
+  ) {
+    this.user_id = user_id;
+    this.user_type = user_type;
+    this.name = name;
+    this.phone = phone;
+    this.email = email;
+    this.cpf = cpf;
+    this.birthday = birthday;
+    this.password = password;
+  }
 
-function createTableUser() {
-  return userModel.sync({ force: false }).then(() => {
-    console.log('*******Tabela de cliente criada com sucesso*******');
-  });
+  getClientDetails(): string {
+    return `Client ${this.name}.`;
+  }
 }
 
-export { userModel, createTableUser };
+export { User };

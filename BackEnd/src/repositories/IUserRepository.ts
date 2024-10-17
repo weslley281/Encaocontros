@@ -7,6 +7,7 @@ interface IUserRepository {
     phone,
     email,
     birthday,
+    cpf,
     user_type,
     password,
   }: ICreateUserDTO): Promise<User>;
@@ -16,6 +17,7 @@ interface IUserRepository {
     phone,
     email,
     birthday,
+    cpf,
     user_type,
   }: ICreateUserDTO): Promise<Object>;
   findById(user_id: number): Promise<User>;
