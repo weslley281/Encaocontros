@@ -1,5 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { createUserController } from '../controllers/User/CreateUser';
+import { getUserByIDController } from 'src/controllers/User/GetUserByID';
 
 const userRoutes = Router();
 
@@ -12,6 +13,13 @@ userRoutes.post(
   '/',
   asyncHandler((req: Request, res: Response) =>
     createUserController.handle(req, res)
+  )
+);
+
+userRoutes.get(
+  '/',
+  asyncHandler((req: Request, res: Response) =>
+    getUserByIDController.handle(req, res)
   )
 );
 
