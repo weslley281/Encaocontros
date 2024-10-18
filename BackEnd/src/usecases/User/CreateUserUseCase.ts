@@ -1,9 +1,8 @@
 import { encrypt } from '../../utils/crypto';
-import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { User } from '../../models/User';
-import { UserRepository } from '../../repositories/implementations/UserRepository'; // Importando o repositório
 import bcrypt from 'bcryptjs';
 import { AppError } from '../../errors/AppErros';
+import { IUserRepository } from '../../repositories/IUserRepository';
 
 interface IRequest {
   user_type: string
@@ -16,10 +15,9 @@ interface IRequest {
 }
 
 export class CreateUserUseCase {
-  private userRepository = new UserRepository(); // Instanciando o repositório
+  constructor(private userRepository: IUserRepository) {}
 
   async execute(data: IRequest): Promise<User> {
-    // Verificando se o email já existe
     const existingEmailUser = await this.userRepository.findByEmail(data.email);
     const existingCPFUser = await this.userRepository.findByCPF(data.cpf);
     
