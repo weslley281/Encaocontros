@@ -9,6 +9,9 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "strictPropertyInitialization": false,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "rootDir": "./",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   }
 }

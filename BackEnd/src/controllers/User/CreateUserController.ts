@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
-import { CreateUserUseCase } from '../usecases/CreateUser/CreateUserUseCase'; // Corrigido o caminho da importação
+import { CreateUserUseCase } from '../../usecases/User/CreateUserUseCase'; // Corrigido o caminho da importação
 
 // Esquema de validação do Zod
 const createClientSchema = z.object({

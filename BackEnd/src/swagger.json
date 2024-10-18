@@ -1,0 +1,155 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "RentX Documentation",
+    "description": "Tis is an API Tent",
+    "version": "1.0.0",
+    "contact": {
+      "email": "weslleyhenrique800@gmail.com",
+      "name": "Weslley Henrique Vieira Ferraz",
+      "url": "http://engenheirosoftwareweslley.com.br"
+    }
+  },"paths": {
+    "/users": {
+      "post": {
+        "summary": "Cria um novo usuário",
+        "tags": ["Usuários"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_type": {
+                    "type": "string",
+                    "description": "Tipo do usuário (ex: administrador, cliente)",
+                    "example": "cliente"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Nome do usuário",
+                    "example": "João Silva"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "Telefone do usuário",
+                    "example": "559999999999"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "E-mail do usuário",
+                    "example": "joao@example.com"
+                  },
+                  "cpf": {
+                    "type": "string",
+                    "description": "CPF do usuário (somente números)",
+                    "example": "12345678901"
+                  },
+                  "birthday": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Data de nascimento do usuário",
+                    "example": "1990-01-01"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "Senha de acesso",
+                    "example": "senha123"
+                  }
+                },
+                "required": ["user_type", "name", "phone", "email", "cpf", "birthday", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuário criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "ID do novo usuário",
+                      "example": "abc123"
+                    },
+                    "user_type": {
+                      "type": "string",
+                      "description": "Tipo do usuário",
+                      "example": "cliente"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Nome do usuário",
+                      "example": "João Silva"
+                    },
+                    "phone": {
+                      "type": "string",
+                      "description": "Telefone do usuário",
+                      "example": "559999999999"
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "E-mail do usuário",
+                      "example": "joao@example.com"
+                    },
+                    "cpf": {
+                      "type": "string",
+                      "description": "CPF do usuário",
+                      "example": "12345678901"
+                    },
+                    "birthday": {
+                      "type": "string",
+                      "format": "date",
+                      "description": "Data de nascimento do usuário",
+                      "example": "1990-01-01"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de validação ou erro ao criar o usuário",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem de erro",
+                      "example": "Erro de validação"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "description": "Detalhes dos erros de validação",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "string",
+                            "description": "Campo com erro",
+                            "example": "email"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro de validação",
+                            "example": "Formato do email é inválido"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { CreateUserController } from '../controllers/CreateUserController';
+import { CreateUserController } from '../controllers/User/CreateUserController';
 
 const userRoutes = Router();
 const createUserController = new CreateUserController();

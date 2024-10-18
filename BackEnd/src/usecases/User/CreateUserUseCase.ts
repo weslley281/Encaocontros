@@ -1,8 +1,9 @@
-import { encrypt } from 'src/utils/crypto';
+import { encrypt } from '../../utils/crypto';
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { User } from '../../models/User';
 import { UserRepository } from '../../repositories/implementations/UserRepository'; // Importando o repositório
 import bcrypt from 'bcryptjs';
+import { AppError } from '../../errors/AppErros';
 
 interface IRequest {
   user_type: string
@@ -23,7 +24,7 @@ export class CreateUserUseCase {
     const existingCPFUser = await this.userRepository.findByCPF(data.cpf);
     
     if (existingEmailUser || existingCPFUser) {
-      throw new Error('Usuário já existe');
+      throw new AppError('Usuário já existe');
     }
 
     // Criptografando a senha
