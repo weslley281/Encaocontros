@@ -25,11 +25,9 @@ export class CreateUserUseCase {
       throw new AppError('Usuário já existe');
     }
 
-    // Criptografando a senha
     const hashedPassword = await bcrypt.hash(data.password, 10);
     const encryptedCPF = encrypt(data.cpf);
     
-    // Criando o novo usuário
     return await this.userRepository.create({
       ...data,
       password: hashedPassword,
