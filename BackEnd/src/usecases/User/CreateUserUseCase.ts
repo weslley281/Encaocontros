@@ -5,7 +5,7 @@ import { AppError } from '../../errors/AppErros';
 import { IUserRepository } from '../../repositories/IUserRepository';
 
 interface IRequest {
-  user_type: string
+  user_type: string;
   name: string;
   phone: string;
   email: string;
@@ -20,18 +20,18 @@ export class CreateUserUseCase {
   async execute(data: IRequest): Promise<User> {
     const existingEmailUser = await this.userRepository.findByEmail(data.email);
     const existingCPFUser = await this.userRepository.findByCPF(data.cpf);
-    
+
     if (existingEmailUser || existingCPFUser) {
       throw new AppError('Usuário já existe');
     }
 
     const hashedPassword = await bcrypt.hash(data.password, 10);
     const encryptedCPF = encrypt(data.cpf);
-    
+
     return await this.userRepository.create({
       ...data,
       password: hashedPassword,
-      cpf: encryptedCPF
+      cpf: encryptedCPF,
     });
   }
 }

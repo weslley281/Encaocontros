@@ -4,7 +4,7 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerFile from './swagger.json';
 import { createConnectionDataBase } from './config/database';
 import { createTableUser } from './database/userModel';
-import { createTablePets } from './database/dogModel';
+import { createTablePets } from './database/petModel';
 
 createConnectionDataBase();
 createTableUser();

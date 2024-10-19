@@ -8,17 +8,21 @@ const petModel = connection.define('pets', {
     primaryKey: true,
     allowNull: false,
   },
+  animal: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
   age: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
+    type: DataTypes.DOUBLE,
+    allowNull: false,
   },
   breed: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
   },
   gender: {
     type: DataTypes.STRING,
