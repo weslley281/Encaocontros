@@ -15,7 +15,7 @@ const userModel = connection.define('users', {
   phone: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: false
+    unique: false,
   },
   email: {
     type: DataTypes.STRING,
@@ -23,7 +23,7 @@ const userModel = connection.define('users', {
     unique: true,
   },
   user_type: {
-    type: DataTypes.STRING,
+    type: DataTypes.ENUM('client', 'admin'),
     allowNull: false,
     unique: false,
   },
