@@ -5,6 +5,9 @@ import swaggerFile from './swagger.json';
 import { createConnectionDataBase } from './config/database';
 import { createTableUser } from './database/userModel';
 import { createTablePets } from './database/petModel';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 createConnectionDataBase();
 createTableUser();
