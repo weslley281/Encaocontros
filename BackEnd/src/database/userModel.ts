@@ -25,7 +25,7 @@ const userModel = connection.define('users', {
   user_type: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
+    unique: false,
   },
   cpf: {
     type: DataTypes.STRING,

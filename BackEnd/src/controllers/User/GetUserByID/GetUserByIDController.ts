@@ -4,7 +4,10 @@ import { GetUserByIDUseCase } from 'src/usecases/User/GetUserByIDUseCase';
 
 // Esquema de validação do Zod
 const getUserByIDControllerSchema = z.object({
-  user_id: z.number().int()
+  user_id: z
+    .string()
+    .transform((val) => parseInt(val, 10))
+    .refine((val) => !isNaN(val), { message: 'ID inválido' }),
 });
 
 class GetUserByIDController {
@@ -12,7 +15,9 @@ class GetUserByIDController {
 
   async handle(req: Request, res: Response): Promise<Response> {
     try {
-      const validatedData = getUserByIDControllerSchema.parse(req.body);
+      const validatedData = getUserByIDControllerSchema.parse({
+        user_id: req.params.user_id,
+      });
 
       const user = await this.getUserByIDUseCase.execute(validatedData);
 

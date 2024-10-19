@@ -1,15 +1,16 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "RentX Documentation",
-    "description": "Tis is an API Tent",
+    "title": "Encaocontros API",
+    "description": "Uma api completa para aplicações de encontros e matches para cães",
     "version": "1.0.0",
     "contact": {
       "email": "weslleyhenrique800@gmail.com",
       "name": "Weslley Henrique Vieira Ferraz",
       "url": "http://engenheirosoftwareweslley.com.br"
     }
-  },"paths": {
+  },
+  "paths": {
     "/users": {
       "post": {
         "summary": "Cria um novo usuário",
@@ -58,7 +59,15 @@
                     "example": "senha123"
                   }
                 },
-                "required": ["user_type", "name", "phone", "email", "cpf", "birthday", "password"]
+                "required": [
+                  "user_type",
+                  "name",
+                  "phone",
+                  "email",
+                  "cpf",
+                  "birthday",
+                  "password"
+                ]
               }
             }
           }
@@ -142,6 +151,127 @@
                           }
                         }
                       }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "summary": "Busca um usuário pelo ID",
+        "tags": ["Usuários"],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            },
+            "description": "ID do usuário"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário encontrado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "ID do usuário",
+                      "example": 1
+                    },
+                    "user_type": {
+                      "type": "string",
+                      "description": "Tipo do usuário",
+                      "example": "cliente"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Nome do usuário",
+                      "example": "João Silva"
+                    },
+                    "phone": {
+                      "type": "string",
+                      "description": "Telefone do usuário",
+                      "example": "559999999999"
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "E-mail do usuário",
+                      "example": "joao@example.com"
+                    },
+                    "cpf": {
+                      "type": "string",
+                      "description": "CPF do usuário",
+                      "example": "12345678901"
+                    },
+                    "birthday": {
+                      "type": "string",
+                      "format": "date",
+                      "description": "Data de nascimento do usuário",
+                      "example": "1990-01-01"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de validação ou usuário não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem de erro",
+                      "example": "Erro de validação"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "description": "Detalhes dos erros de validação",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "string",
+                            "description": "Campo com erro",
+                            "example": "user_id"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro de validação",
+                            "example": "user_id deve ser um número inteiro"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem informando que o usuário não foi encontrado",
+                      "example": "Usuário não encontrado"
                     }
                   }
                 }

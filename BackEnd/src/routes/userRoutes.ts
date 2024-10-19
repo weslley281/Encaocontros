@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { createUserController } from '../controllers/User/CreateUser';
-import { getUserByIDController } from 'src/controllers/User/GetUserByID';
+import { getUserByIDController } from '../controllers/User/GetUserByID';
 
 const userRoutes = Router();
 
@@ -17,7 +17,7 @@ userRoutes.post(
 );
 
 userRoutes.get(
-  '/',
+  '/:user_id',
   asyncHandler((req: Request, res: Response) =>
     getUserByIDController.handle(req, res)
   )

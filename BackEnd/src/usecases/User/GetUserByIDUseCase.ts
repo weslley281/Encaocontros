@@ -15,6 +15,6 @@ export class GetUserByIDUseCase {
 
     if (!user) throw new AppError('Usuário não existe');
 
-    return user;
+    return this.userRepository.findById(data.user_id);
   }
 }
