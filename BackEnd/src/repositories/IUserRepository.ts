@@ -26,6 +26,7 @@ interface IUserRepository {
   findByCPF(cpf: string): Promise<User>;
   changePrivileges(user_id: number, user_type: string): Promise<User>;
   findAllUser(): Promise<User[]>;
+  deleteById(user_id: number): Promise<Boolean>;
 }
 
 export { IUserRepository, ICreateUserDTO };

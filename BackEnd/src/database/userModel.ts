@@ -39,6 +39,10 @@ const userModel = connection.define('users', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  photo: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  }
 });
 
 function createTableUser() {

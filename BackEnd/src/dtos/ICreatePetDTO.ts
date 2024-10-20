@@ -1,5 +1,6 @@
 export interface ICreatePetDTO {
   pet_id?: number;
+  photo?: string;
   animal: string;
   name: string;
   age: number;

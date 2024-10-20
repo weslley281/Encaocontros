@@ -2,7 +2,7 @@ import { User } from '../../models/User';
 import { ICreateUserDTO, IUserRepository } from '../IUserRepository';
 import { userModel } from '../../database/userModel';
 
-class UserRepository implements IUserRepository {
+class UserRepository implements IUserRepository {  
   private static INSTANCE: UserRepository;
 
   public static getInstance() {
@@ -110,6 +110,30 @@ class UserRepository implements IUserRepository {
     const updatedUser: any = await userModel.findOne({ where: { user_id } });
 
     return updatedUser;
+  }
+
+  async updateUserPhoto(user_id: number, photo: string) {
+  // O update retorna um array onde a primeira posição é a contagem e a segunda são os registros afetados
+  const [affectedCount, affectedRows] = await userModel.update(
+    { photo }, // Supondo que você adicionou a coluna 'photo' ao seu modelo
+    { where: { user_id }, returning: true } // 'returning: true' para receber os dados atualizados
+  );
+
+  if (affectedCount === 0) {
+    throw new Error('Usuário não encontrado');
+  }
+
+  return affectedRows[0]; // Retorna o primeiro usuário atualizado
+}
+
+
+
+  async deleteById(user_id: number): Promise<boolean> {
+    const deletedCount = await userModel.destroy({
+      where: { user_id },
+    });
+
+    return deletedCount > 0; // Retorna true se um usuário foi deletado, false caso contrário
   }
 }
 
