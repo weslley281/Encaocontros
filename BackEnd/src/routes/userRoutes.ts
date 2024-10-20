@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { createUserController } from '../controllers/User/CreateUser';
-import { getUserByIDController } from '../controllers/User/GetUserByID';
+import { createUserController } from '../controllers/User/Create';
+import { getUserByIDController } from '../controllers/User/GetByID';
 
 const userRoutes = Router();
 

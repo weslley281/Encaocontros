@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { CreateUserUseCase } from '../../../usecases/User/CreateUserUseCase';
 
 // Esquema de validação do Zod
-const createClientSchema = z.object({
+const createUserSchema = z.object({
   user_type: z.string().min(1, { message: 'O tipo do usuário é obrigatório' }),
   name: z.string().min(1, { message: 'Nome é obrigatório' }),
   phone: z.string().min(10, { message: 'Telefone deve ter mais de 10 caracteres' }),
@@ -18,7 +18,7 @@ class CreateUserController {
 
   async handle(req: Request, res: Response): Promise<Response> {
     try {
-      const validatedData = createClientSchema.parse(req.body);
+      const validatedData = createUserSchema.parse(req.body);
 
       const newUser = await this.createUserUseCase.execute(validatedData);
 
