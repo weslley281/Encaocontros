@@ -29,7 +29,7 @@ class AuthenticateUserUseCase {
       throw new Error('Email ou senha incorretos!');
     }
 
-    const passwordMatch = await compare(password, user.password); // Usando bcryptjs para comparar senhas
+    const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
       throw new Error('Email ou senha incorretos!');
@@ -37,16 +37,16 @@ class AuthenticateUserUseCase {
 
     const token = sign({}, process.env.JWT_SECRET || '', {
       subject: user.user_id.toString(),
-      expiresIn: process.env.TOKEN_EXPIRATION || '1h',
+      expiresIn: process.env.TOKEN_EXPIRATION || '1d',
     });
 
     return {
-      token,
-      user: {
+      user: { 
         user_id: user.user_id,
         name: user.name,
         email: user.email,
       },
+      token,
     };
   }
 }

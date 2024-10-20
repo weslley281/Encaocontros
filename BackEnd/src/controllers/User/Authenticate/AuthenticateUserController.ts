@@ -1,9 +1,7 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
-import { CreateUserUseCase } from '../../../usecases/User/CreateUserUseCase';
 import { AuthenticateUserUseCase } from 'src/usecases/User/AuthenticateUserUseCase';
 
-// Esquema de validação do Zod
 const createUserSchema = z.object({
   email: z.string().email({ message: 'Formato do email é inválido' }),
   password: z.string().min(6, { message: 'A senha deve ter pelo menos 6 caracteres' })

@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { z } from 'zod';
 import { CreateUserUseCase } from '../../../usecases/User/CreateUserUseCase';
 
-// Esquema de validação do Zod
 const createUserSchema = z.object({
   user_type: z.string().min(1, { message: 'O tipo do usuário é obrigatório' }),
   name: z.string().min(1, { message: 'Nome é obrigatório' }),
