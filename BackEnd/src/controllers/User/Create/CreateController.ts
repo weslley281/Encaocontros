@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
-import { CreateUserUseCase } from '../../../usecases/User/CreateUserUseCase';
+import { CreateUserUseCase } from '../../../usecases/User/CreateUseCase';
 
 const createUserSchema = z.object({
   user_type: z.string().min(1, { message: 'O tipo do usuário é obrigatório' }),

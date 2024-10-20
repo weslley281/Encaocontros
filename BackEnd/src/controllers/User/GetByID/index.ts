@@ -1,6 +1,6 @@
-import { GetUserByIDUseCase } from "../../../usecases/User/GetUserByIDUseCase";
+import { GetUserByIDUseCase } from "../../../usecases/User/GetByIDUseCase";
 import { UserRepository } from "../../../repositories/implementations/UserRepository";
-import { GetUserByIDController } from "./GetUserByIDController";
+import { GetUserByIDController } from "./GetByIDController";
 
 
 const usersRepository = UserRepository.getInstance();

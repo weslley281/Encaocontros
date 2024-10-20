@@ -15,6 +15,7 @@
       "post": {
         "summary": "Cria um novo usuário",
         "tags": ["Usuários"],
+        "description": "",
         "requestBody": {
           "required": true,
           "content": {
@@ -80,7 +81,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": {
+                    "user_id": {
                       "type": "string",
                       "description": "ID do novo usuário",
                       "example": "abc123"
@@ -160,7 +161,7 @@
         }
       }
     },
-    "/users/{user_id}": {
+    "/users/id/{user_id}": {
       "get": {
         "summary": "Busca um usuário pelo ID",
         "tags": ["Usuários"],
@@ -170,7 +171,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
+              "type": "string",
               "example": 1
             },
             "description": "ID do usuário"
@@ -184,8 +185,8 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": {
-                      "type": "integer",
+                    "user_id": {
+                      "type": "string",
                       "description": "ID do usuário",
                       "example": 1
                     },
@@ -272,6 +273,181 @@
                       "type": "string",
                       "description": "Mensagem informando que o usuário não foi encontrado",
                       "example": "Usuário não encontrado"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },"/users/auth": {
+      "post": {
+        "summary": "Autentica um usuário",
+        "tags": ["Usuários"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "E-mail do usuário",
+                    "example": "joao@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "Senha de acesso",
+                    "example": "senha123"
+                  }
+                },
+                "required": ["email", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuário autenticado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "description": "Token JWT de autenticação",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de validação dos dados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem de erro",
+                      "example": "Erro de validação"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "description": "Detalhes dos erros de validação",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "string",
+                            "description": "Campo com erro",
+                            "example": "email"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro de validação",
+                            "example": "Formato do email é inválido"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/name/{name}": {
+      "get": {
+        "summary": "Busca todos os usuários com um nome específico",
+        "description": "Retorna todos os usuários que possuem o nome fornecido no parâmetro da URL.",
+        "tags": ["Usuários"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Nome do usuário que deseja buscar",
+            "schema": {
+              "type": "string",
+              "example": "João"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuários encontrados com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "user_id": {
+                        "type": "string",
+                        "description": "ID do usuário",
+                        "example": "abc123"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Nome do usuário",
+                        "example": "João Silva"
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "E-mail do usuário",
+                        "example": "joao@example.com"
+                      },
+                      "phone": {
+                        "type": "string",
+                        "description": "Telefone do usuário",
+                        "example": "559999999999"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de validação ou erro ao buscar o usuário",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem de erro",
+                      "example": "Erro de validação"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "description": "Detalhes dos erros de validação",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "string",
+                            "description": "Campo com erro",
+                            "example": "name"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro de validação",
+                            "example": "Nome é obrigatório"
+                          }
+                        }
+                      }
                     }
                   }
                 }

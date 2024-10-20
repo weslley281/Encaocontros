@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
-import { AuthenticateUserUseCase } from 'src/usecases/User/AuthenticateUserUseCase';
+import { AuthenticateUserUseCase } from '../../../usecases/User/AuthenticateUseCase';
 
 const createUserSchema = z.object({
   email: z.string().email({ message: 'Formato do email é inválido' }),

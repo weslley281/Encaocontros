@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
-import { GetUserByIDUseCase } from 'src/usecases/User/GetUserByIDUseCase';
+import { GetUserByIDUseCase } from 'src/usecases/User/GetByIDUseCase';
 
 // Esquema de validação do Zod
 const getUserByIDControllerSchema = z.object({

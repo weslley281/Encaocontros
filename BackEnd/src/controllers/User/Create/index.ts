@@ -1,6 +1,6 @@
 import { UserRepository } from "../../../repositories/implementations/UserRepository";
-import { CreateUserUseCase } from "../../../usecases/User/CreateUserUseCase";
-import { CreateUserController } from "./CreateUserController";
+import { CreateUserUseCase } from "../../../usecases/User/CreateUseCase";
+import { CreateUserController } from "./CreateController";
 
 const usersRepository = UserRepository.getInstance();
 const createUserUseCase = new CreateUserUseCase(usersRepository);
