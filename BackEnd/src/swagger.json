@@ -159,6 +159,250 @@
             }
           }
         }
+      },"put": {
+        "tags": ["Usuários"],
+        "summary": "Atualizar informações do usuário",
+        "description": "Essa rota atualiza as informações de um usuário existente, incluindo seu tipo, nome, telefone, email, CPF e data de nascimento.",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "description": "ID do usuário a ser atualizado",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Dados para atualizar o usuário",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_type": {
+                    "type": "string",
+                    "example": "client",
+                    "description": "Tipo de usuário (client ou admin)"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "João da Silva",
+                    "description": "Nome completo do usuário"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "5599999999999",
+                    "description": "Número de telefone do usuário"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "joao.silva@email.com",
+                    "description": "Endereço de e-mail do usuário"
+                  },
+                  "cpf": {
+                    "type": "string",
+                    "example": "12345678901",
+                    "description": "CPF do usuário (11 dígitos)"
+                  },
+                  "birthday": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "1990-05-01",
+                    "description": "Data de nascimento do usuário (formato: YYYY-MM-DD)"
+                  }
+                },
+                "required": ["user_type", "name", "phone", "email", "cpf", "birthday"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuário atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user_id": {
+                      "type": "integer",
+                      "example": 1,
+                      "description": "ID do usuário atualizado"
+                    },
+                    "user_type": {
+                      "type": "string",
+                      "example": "client",
+                      "description": "Tipo de usuário atualizado"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "João da Silva",
+                      "description": "Nome do usuário atualizado"
+                    },
+                    "phone": {
+                      "type": "string",
+                      "example": "5599999999999",
+                      "description": "Número de telefone atualizado"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "joao.silva@email.com",
+                      "description": "Endereço de e-mail atualizado"
+                    },
+                    "cpf": {
+                      "type": "string",
+                      "example": "12345678901",
+                      "description": "CPF atualizado"
+                    },
+                    "birthday": {
+                      "type": "string",
+                      "format": "date",
+                      "example": "1990-05-01",
+                      "description": "Data de nascimento atualizada"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de validação",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Erro de validação"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "string",
+                            "example": "email",
+                            "description": "Campo com erro de validação"
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "Formato do email é inválido",
+                            "description": "Descrição do erro de validação"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Usuário não encontrado"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/auth": {
+      "post": {
+        "summary": "Autentica um usuário",
+        "tags": ["Usuários"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "E-mail do usuário",
+                    "example": "joao@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "Senha de acesso",
+                    "example": "senha123"
+                  }
+                },
+                "required": ["email", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuário autenticado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "description": "Token JWT de autenticação",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de validação dos dados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem de erro",
+                      "example": "Erro de validação"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "description": "Detalhes dos erros de validação",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "string",
+                            "description": "Campo com erro",
+                            "example": "email"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro de validação",
+                            "example": "Formato do email é inválido"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/users/id/{user_id}": {
@@ -273,89 +517,6 @@
                       "type": "string",
                       "description": "Mensagem informando que o usuário não foi encontrado",
                       "example": "Usuário não encontrado"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },"/users/auth": {
-      "post": {
-        "summary": "Autentica um usuário",
-        "tags": ["Usuários"],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "email": {
-                    "type": "string",
-                    "description": "E-mail do usuário",
-                    "example": "joao@example.com"
-                  },
-                  "password": {
-                    "type": "string",
-                    "description": "Senha de acesso",
-                    "example": "senha123"
-                  }
-                },
-                "required": ["email", "password"]
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Usuário autenticado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "token": {
-                      "type": "string",
-                      "description": "Token JWT de autenticação",
-                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Erro de validação dos dados",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "description": "Mensagem de erro",
-                      "example": "Erro de validação"
-                    },
-                    "errors": {
-                      "type": "array",
-                      "description": "Detalhes dos erros de validação",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "path": {
-                            "type": "string",
-                            "description": "Campo com erro",
-                            "example": "email"
-                          },
-                          "message": {
-                            "type": "string",
-                            "description": "Mensagem de erro de validação",
-                            "example": "Formato do email é inválido"
-                          }
-                        }
-                      }
                     }
                   }
                 }

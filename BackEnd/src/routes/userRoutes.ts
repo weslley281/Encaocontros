@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from 'express';
 import { createUserController } from '../controllers/User/Create';
 import { getUserByIDController } from '../controllers/User/GetByID';
 import { authenticateUserController } from '../controllers/User/Authenticate';
+import { updateUserController } from '../controllers/User/Update';
 
 const userRoutes = Router();
 
@@ -21,6 +22,13 @@ userRoutes.post(
   '/auth',
   asyncHandler((req: Request, res: Response) =>
     authenticateUserController.handle(req, res)
+  )
+);
+
+userRoutes.put(
+  '/',
+  asyncHandler((req: Request, res: Response) =>
+    updateUserController.handle(req, res)
   )
 );
 

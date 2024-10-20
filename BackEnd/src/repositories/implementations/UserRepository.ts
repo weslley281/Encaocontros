@@ -42,9 +42,8 @@ class UserRepository implements IUserRepository {
     phone,
     email,
     cpf,
-    birthday,
-    password,
-  }: ICreateUserDTO): Promise<User> {
+    birthday
+  }: ICreateUserDTO): Promise<Object> {
     const user: any = await userModel.update(
       {
         user_id,
@@ -53,13 +52,24 @@ class UserRepository implements IUserRepository {
         phone,
         email,
         cpf,
-        birthday,
-        password,
+        birthday
       },
       { where: { user_id } }
     );
 
-    return user;
+    if (user) {
+      return {
+        user_id,
+        user_type,
+        name,
+        phone,
+        email,
+        cpf,
+        birthday
+      }
+    } else {
+      return { message: 'Error' };
+    }
   }
 
   async findById(user_id: number): Promise<User> {
@@ -112,7 +122,7 @@ class UserRepository implements IUserRepository {
     return updatedUser;
   }
 
-  async updateUserPhoto(user_id: number, photo: string) {
+  async updateUserPhoto(user_id: number, photo: string): Promise<Object> {
   // O update retorna um array onde a primeira posição é a contagem e a segunda são os registros afetados
   const [affectedCount, affectedRows] = await userModel.update(
     { photo }, // Supondo que você adicionou a coluna 'photo' ao seu modelo

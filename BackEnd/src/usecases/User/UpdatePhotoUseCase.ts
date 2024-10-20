@@ -5,29 +5,19 @@ import { IUserRepository } from '../../repositories/IUserRepository';
 
 interface IRequest {
   user_id: number;
-  user_type: string;
-  name: string;
-  phone: string;
-  email: string;
-  cpf: string;
-  birthday: Date;
+  photo: string;
 }
 
 export class UpdateUserPhotoUseCase {
   constructor(private userRepository: IUserRepository) {}
 
-  async execute(data: IRequest): Promise<User> {
+  async execute(data: IRequest): Promise<Object> {
     const existingUser = await this.userRepository.findById(data.user_id);
 
     if (!existingUser) {
       throw new AppError('Usuário não existe');
     }
 
-    const encryptedCPF = encrypt(data.cpf);
-
-    return await this.userRepository.create({
-      ...data,
-      cpf: encryptedCPF,
-    });
+    return await this.userRepository.updateUserPhoto(data.user_id, data.photo);
   }
 }

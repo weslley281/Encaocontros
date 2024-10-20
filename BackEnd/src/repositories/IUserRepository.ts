@@ -26,6 +26,7 @@ interface IUserRepository {
   findByCPF(cpf: string): Promise<User>;
   changePrivileges(user_id: number, user_type: string): Promise<User>;
   findAllUser(): Promise<User[]>;
+  updateUserPhoto(user_id: number, photo: string): Promise<Object>
   deleteById(user_id: number): Promise<Boolean>;
 }
 

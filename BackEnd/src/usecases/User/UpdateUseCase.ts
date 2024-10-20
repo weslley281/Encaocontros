@@ -16,7 +16,7 @@ interface IRequest {
 export class UpdateUserUseCase {
   constructor(private userRepository: IUserRepository) {}
 
-  async execute(data: IRequest): Promise<User> {
+  async execute(data: IRequest): Promise<Object> {
     const existingUser = await this.userRepository.findById(data.user_id);
 
     if (!existingUser) {
