@@ -1,4 +1,4 @@
-import { GetAllUserByNameUseCase } from "src/usecases/User/GetAllByNameUseCase";
+import { GetAllUserByNameUseCase } from "../../../usecases/User/GetAllByNameUseCase";
 import { UserRepository } from "../../../repositories/implementations/UserRepository";
 import { GetAllUserByNameController } from "./GetAllByNameController";
 

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
-import { GetAllUserByNameUseCase } from 'src/usecases/User/GetAllByNameUseCase';
+import { GetAllUserByNameUseCase } from '../../../usecases/User/GetAllByNameUseCase';
 
 // Esquema de validação do Zod
 const getAllUserByNameControllerSchema = z.object({
@@ -13,7 +13,7 @@ export class GetAllUserByNameController {
   async handle(req: Request, res: Response): Promise<Response> {
     try {
       const validatedData = getAllUserByNameControllerSchema.parse({
-        user_id: req.params.user_id,
+        name: req.params.name,
       });
 
       const users = await this.getAllUserByNameUseCase.execute(validatedData);

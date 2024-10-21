@@ -1,6 +1,7 @@
 import { User } from '../../models/User';
 import { ICreateUserDTO, IUserRepository } from '../IUserRepository';
 import { userModel } from '../../database/userModel';
+import { Op } from 'sequelize';
 
 class UserRepository implements IUserRepository {  
   private static INSTANCE: UserRepository;
@@ -106,8 +107,14 @@ class UserRepository implements IUserRepository {
   }
 
   async findByName(name: string): Promise<User[]> {
-    const users: any = await userModel.findAll({ where: { name } });
-
+    const users: any = await userModel.findAll({
+      where: {
+        name: {
+          [Op.like]: `%${name}%`, // Implementação do LIKE
+        },
+      },
+    });
+  
     return users;
   }
 

@@ -4,6 +4,7 @@ import { getUserByIDController } from '../controllers/User/GetByID';
 import { authenticateUserController } from '../controllers/User/Authenticate';
 import { updateUserController } from '../controllers/User/Update';
 import { updateUserPhotoController } from '../controllers/User/UpdatePhoto';
+import { getAllUserByNameController } from '../controllers/User/GetAllByName';
 
 const userRoutes = Router();
 
@@ -50,7 +51,7 @@ userRoutes.get(
 userRoutes.get(
   '/name/:name',
   asyncHandler((req: Request, res: Response) =>
-    getUserByIDController.handle(req, res)
+    getAllUserByNameController.handle(req, res)
   )
 );
 
