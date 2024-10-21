@@ -1,0 +1,85 @@
+Arguments: 
+  D:\programas\NodeJS\node.exe C:\Users\Wesll\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
+
+PATH: 
+  D:\codigos\cmder\vendor\conemu-maximus5\ConEmu\Scripts;D:\codigos\cmder\vendor\conemu-maximus5;D:\codigos\cmder\vendor\conemu-maximus5\ConEmu;C:\Python312\Scripts\;C:\Python312\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;D:\programas\wamp64\bin\php\php8.3.6;C:\ProgramData\ComposerSetup\bin;D:\programas\MinGW\bin;C:\Program Files (x86)\HP\Common\HPDestPlgIn\;D:\programas\Git\cmd;C:\Program Files\dotnet\;D:\programas\NodeJS\;C:\Users\Wesll\AppData\Roaming\Python\Scripts;C:\Users\Wesll\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\Wesll\AppData\Local\Programs\Python\Python311\;C:\Users\Wesll\AppData\Local\Microsoft\WindowsApps;D:\programas\Microsoft VS Code\bin;D:\programas\IntelliJ IDEA Community Edition 2023.1.2\bin;D:\programas\PyCharm Community Edition 2023.1.2\bin;C:\Users\Wesll\AppData\Roaming\Composer\vendor\bin;C:\Users\Wesll\AppData\Local\Microsoft\WinGet\Links;C:\Users\Wesll\.dotnet\tools;C:\Program Files (x86)\Nmap;C:\Users\Wesll\AppData\Roaming\npm;D:\programas\Git\mingw64\bin;D:\programas\Git\usr\bin;D:\codigos\cmder\vendor\bin;D:\codigos\cmder
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  20.17.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: D:\codigos\Encaocontros\Mobile\package.json: Expected double-quoted property name in JSON at position 1313
+      at JSON.parse (<anonymous>)
+      at C:\Users\Wesll\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\Wesll\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\Wesll\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "mobile",
+    "version": "1.0.0",
+    "main": "node_modules/expo/AppEntry.js",
+    "keywords": [
+      "react",
+      "expo",
+      "template",
+      "typescript",
+      "nativebase"
+    ],
+    "license": "MIT",
+    "scripts": {
+      "start": "npx expo start",
+      "android": "npx expo start --android",
+      "ios": "npx expo start --ios",
+      "web": "npx expo start --web",
+      "eject": "expo eject"
+    },
+    "dependencies": {
+      "expo": "^44.0.0",
+      "expo-status-bar": "~1.2.0",
+      "native-base": "3.4.0",
+      "react": "17.0.1",
+      "react-dom": "17.0.1",
+      "react-native": "0.64.3",
+      "react-native-safe-area-context": "3.3.2",
+      "react-native-svg": "12.1.1",
+      "react-native-web": "0.17.1",
+      "@expo-google-fonts/roboto": "^0.2.2",
+      "@hookform/resolvers": "^3.3.2",
+      "@react-navigation/bottom-tabs": "^6.5.7",
+      "@react-navigation/native": "^6.1.6",
+      "@react-navigation/native-stack": "^6.9.12",
+      "expo-image-picker": "~14.0.2",
+      "react-hook-form": "^7.48.2",
+      "unidecode": "^0.1.8",
+      "yup": "^1.3.2"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.12.9",
+      "@types/react": "~17.0.21",
+      "@types/react-native": "~0.64.12",
+      "typescript": "~4.3.5",
+      "@types/unidecode": "^0.1.1",
+      "babel-plugin-module-resolver": "^5.0.0",
+      "react-native-svg-transformer": "^1.0.0",
+    },
+    "bugs": {
+      "url": "https://github.com/GeekyAnts/nativebase-templates/issues"
+    },
+    "homepage": "https://github.com/GeekyAnts/nativebase-templates#readme",
+    "author": "Aditya Jamuar",
+    "private": true
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
