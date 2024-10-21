@@ -79,7 +79,7 @@ class UserRepository implements IUserRepository {
   }
 
   async findByEmail(email: string): Promise<User> {
-    const user: any = await userModel.findOne({ where: { email: email } });
+    const user: any = await userModel.findOne({ where: { email} });
 
     return user;
   }

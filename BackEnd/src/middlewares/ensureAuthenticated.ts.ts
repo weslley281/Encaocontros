@@ -18,7 +18,10 @@ export async function ensureAuthenticated(
 
   const [, token] = authHeader.split(' ');
   try {
-    const { sub: user_id } = verify(token, 'orderofservice') as IPayload;
+    const { sub: user_id } = verify(
+      token,
+      process.env.JWT_SECRET || ''
+    ) as IPayload;
 
     const usersRepository = new UserRepository();
     const user = await usersRepository.findById(Number(user_id));
