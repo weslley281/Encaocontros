@@ -25,8 +25,8 @@
                 "properties": {
                   "user_type": {
                     "type": "string",
-                    "description": "Tipo do usuário (ex: administrador, cliente)",
-                    "example": "cliente"
+                    "description": "Tipo do usuário (client, admin)",
+                    "example": "client"
                   },
                   "name": {
                     "type": "string",
