@@ -321,6 +321,99 @@
         }
       }
     },
+    "/users/photo/{user_id}": {
+      "patch": {
+        "tags": ["Usuários"],
+        "summary": "Atualizar a foto do usuário",
+        "description": "Atualiza a foto de um usuário específico pelo ID.",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "description": "ID do usuário para atualizar a foto",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Upload da foto do usuário",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "photo": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Arquivo da foto do usuário"
+                  }
+                },
+                "required": ["photo"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Foto do usuário atualizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user_id": {
+                      "type": "integer",
+                      "example": 1,
+                      "description": "ID do usuário"
+                    },
+                    "photo_url": {
+                      "type": "string",
+                      "example": "/uploads/users/1/photo.jpg",
+                      "description": "URL da foto atualizada"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao fazer upload da foto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Erro ao fazer upload da foto"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Usuário não encontrado"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/users/auth": {
       "post": {
         "summary": "Autentica um usuário",

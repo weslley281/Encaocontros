@@ -3,6 +3,7 @@ import { createUserController } from '../controllers/User/Create';
 import { getUserByIDController } from '../controllers/User/GetByID';
 import { authenticateUserController } from '../controllers/User/Authenticate';
 import { updateUserController } from '../controllers/User/Update';
+import { updateUserPhotoController } from '../controllers/User/UpdatePhoto';
 
 const userRoutes = Router();
 
@@ -29,6 +30,13 @@ userRoutes.put(
   '/',
   asyncHandler((req: Request, res: Response) =>
     updateUserController.handle(req, res)
+  )
+);
+
+userRoutes.patch(
+  '/photo/:user_id',
+  asyncHandler((req: Request, res: Response) =>
+    updateUserPhotoController.handle(req, res)
   )
 );
 
