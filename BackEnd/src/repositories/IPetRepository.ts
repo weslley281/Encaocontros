@@ -28,7 +28,7 @@ interface IPetRepository {
   findById(pet_id: number): Promise<Pet>;
   findByName(name: string): Promise<Pet[]>;
   findAllPet(): Promise<Pet[]>;
-  updatePetPhoto(pet_id: number, photo: string): Promise<Object>
+  updatePetPhoto(pet_id: number, photo: string): Promise<Object>;
   deleteById(pet_id: number): Promise<Boolean>;
 }
 

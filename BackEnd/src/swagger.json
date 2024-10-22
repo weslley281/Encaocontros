@@ -788,6 +788,745 @@
           }
         }
       }
+    },
+    "/pets": {
+      "post": {
+        "summary": "Cria um novo pet",
+        "tags": ["Pets"],
+        "description": "Criação de um novo pet com dados como nome, tipo, raça, etc.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "animal": {
+                    "type": "string",
+                    "description": "Tipo do animal (ex: gato, cachorro)",
+                    "example": "cachorro"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Nome do pet",
+                    "example": "Rex"
+                  },
+                  "birthday": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Data de nascimento do pet",
+                    "example": "2020-05-15"
+                  },
+                  "breed": {
+                    "type": "string",
+                    "description": "Raça do pet",
+                    "example": "Labrador"
+                  },
+                  "gender": {
+                    "type": "string",
+                    "description": "Gênero do pet (ex: macho, fêmea)",
+                    "example": "macho"
+                  },
+                  "owner_id": {
+                    "type": "integer",
+                    "description": "ID do proprietário do pet",
+                    "example": 1
+                  },
+                  "vaccination_status": {
+                    "type": "string",
+                    "description": "Status de vacinação do pet",
+                    "example": "Vacinado"
+                  },
+                  "health_conditions": {
+                    "type": "string",
+                    "description": "Condições de saúde do pet",
+                    "example": "Nenhuma"
+                  },
+                  "pedigree": {
+                    "type": "boolean",
+                    "description": "Indica se o pet tem pedigree",
+                    "example": true
+                  }
+                },
+                "required": [
+                  "animal",
+                  "name",
+                  "birthday",
+                  "breed",
+                  "gender",
+                  "owner_id",
+                  "vaccination_status",
+                  "health_conditions",
+                  "pedigree"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Pet criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pet_id": {
+                      "type": "string",
+                      "description": "ID do novo pet",
+                      "example": "abc123"
+                    },
+                    "animal": {
+                      "type": "string",
+                      "description": "Tipo do animal",
+                      "example": "cachorro"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Nome do pet",
+                      "example": "Rex"
+                    },
+                    "birthday": {
+                      "type": "string",
+                      "format": "date",
+                      "description": "Data de nascimento do pet",
+                      "example": "2020-05-15"
+                    },
+                    "breed": {
+                      "type": "string",
+                      "description": "Raça do pet",
+                      "example": "Labrador"
+                    },
+                    "gender": {
+                      "type": "string",
+                      "description": "Gênero do pet",
+                      "example": "macho"
+                    },
+                    "vaccination_status": {
+                      "type": "string",
+                      "description": "Status de vacinação do pet",
+                      "example": "Vacinado"
+                    },
+                    "health_conditions": {
+                      "type": "string",
+                      "description": "Condições de saúde do pet",
+                      "example": "Nenhuma"
+                    },
+                    "pedigree": {
+                      "type": "boolean",
+                      "description": "Se o pet tem pedigree",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de validação ou erro ao criar o pet",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem de erro",
+                      "example": "Erro de validação"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "description": "Detalhes dos erros de validação",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "string",
+                            "description": "Campo com erro",
+                            "example": "birthday"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro de validação",
+                            "example": "Formato da data é inválido"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Pets"],
+        "summary": "Atualizar informações do pet",
+        "description": "Essa rota atualiza as informações de um pet existente, incluindo seu tipo, nome, raça, gênero, status de vacinação, condições de saúde e pedigree.",
+        "requestBody": {
+          "description": "Dados para atualizar o pet",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pet_id": {
+                    "type": "integer",
+                    "example": 1,
+                    "description": "ID do pet"
+                  },
+                  "animal": {
+                    "type": "string",
+                    "example": "gato",
+                    "description": "Tipo do animal (ex: gato, cachorro)"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Rex",
+                    "description": "Nome do pet"
+                  },
+                  "birthday": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2019-05-01",
+                    "description": "Data de nascimento do pet (formato: YYYY-MM-DD)"
+                  },
+                  "breed": {
+                    "type": "string",
+                    "example": "Golden Retriever",
+                    "description": "Raça do pet"
+                  },
+                  "gender": {
+                    "type": "string",
+                    "example": "macho",
+                    "description": "Gênero do pet (ex: macho, fêmea)"
+                  },
+                  "vaccination_status": {
+                    "type": "string",
+                    "example": "Vacinado",
+                    "description": "Status de vacinação do pet"
+                  },
+                  "health_conditions": {
+                    "type": "string",
+                    "example": "Nenhuma",
+                    "description": "Condições de saúde do pet"
+                  },
+                  "pedigree": {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "Indica se o pet tem pedigree"
+                  }
+                },
+                "required": [
+                  "pet_id",
+                  "animal",
+                  "name",
+                  "birthday",
+                  "breed",
+                  "gender",
+                  "vaccination_status",
+                  "health_conditions",
+                  "pedigree"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Pet atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pet_id": {
+                      "type": "integer",
+                      "example": 1,
+                      "description": "ID do pet atualizado"
+                    },
+                    "animal": {
+                      "type": "string",
+                      "example": "gato",
+                      "description": "Tipo do animal atualizado"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "Rex",
+                      "description": "Nome do pet atualizado"
+                    },
+                    "birthday": {
+                      "type": "string",
+                      "format": "date",
+                      "example": "2019-05-01",
+                      "description": "Data de nascimento atualizada"
+                    },
+                    "breed": {
+                      "type": "string",
+                      "example": "Golden Retriever",
+                      "description": "Raça atualizada do pet"
+                    },
+                    "gender": {
+                      "type": "string",
+                      "example": "macho",
+                      "description": "Gênero atualizado do pet"
+                    },
+                    "vaccination_status": {
+                      "type": "string",
+                      "example": "Vacinado",
+                      "description": "Status de vacinação atualizado"
+                    },
+                    "health_conditions": {
+                      "type": "string",
+                      "example": "Nenhuma",
+                      "description": "Condições de saúde atualizadas"
+                    },
+                    "pedigree": {
+                      "type": "boolean",
+                      "example": true,
+                      "description": "Pedigree atualizado"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de validação",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Erro de validação"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "string",
+                            "example": "birthday",
+                            "description": "Campo com erro de validação"
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "Formato da data é inválido",
+                            "description": "Descrição do erro de validação"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pet não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Pet não encontrado"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pets/photo/{pet_id}": {
+      "patch": {
+        "tags": ["Pets"],
+        "summary": "Atualizar a foto do pet",
+        "description": "Atualiza a foto de um pet específico pelo ID.",
+        "parameters": [
+          {
+            "name": "pet_id",
+            "in": "path",
+            "required": true,
+            "description": "ID do pet para atualizar a foto",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Upload da foto do pet",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "photo": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Arquivo da foto do pet"
+                  }
+                },
+                "required": ["photo"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Foto do pet atualizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pet_id": {
+                      "type": "integer",
+                      "example": 1,
+                      "description": "ID do pet"
+                    },
+                    "photo_url": {
+                      "type": "string",
+                      "example": "/uploads/pets/1/photo.jpg",
+                      "description": "URL da foto atualizada"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao fazer upload da foto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Erro ao fazer upload da foto"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pet não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Pet não encontrado"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pets/id/{pet_id}": {
+      "get": {
+        "summary": "Busca um pet pelo ID",
+        "tags": ["Pets"],
+        "parameters": [
+          {
+            "name": "pet_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": 1
+            },
+            "description": "ID do pet"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pet encontrado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pet_id": {
+                      "type": "string",
+                      "description": "ID do pet",
+                      "example": 1
+                    },
+                    "pet_type": {
+                      "type": "string",
+                      "description": "Tipo do pet",
+                      "example": "cliente"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Nome do pet",
+                      "example": "João Silva"
+                    },
+                    "phone": {
+                      "type": "string",
+                      "description": "Telefone do pet",
+                      "example": "559999999999"
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "E-mail do pet",
+                      "example": "joao@example.com"
+                    },
+                    "cpf": {
+                      "type": "string",
+                      "description": "CPF do pet",
+                      "example": "12345678901"
+                    },
+                    "birthday": {
+                      "type": "string",
+                      "format": "date",
+                      "description": "Data de nascimento do pet",
+                      "example": "1990-01-01"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de validação ou pet não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem de erro",
+                      "example": "Erro de validação"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "description": "Detalhes dos erros de validação",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "string",
+                            "description": "Campo com erro",
+                            "example": "pet_id"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro de validação",
+                            "example": "pet_id deve ser um número inteiro"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pet não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem informando que o pet não foi encontrado",
+                      "example": "Pet não encontrado"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pets/name/{name}": {
+      "get": {
+        "summary": "Busca todos os pets com um nome específico",
+        "description": "Retorna todos os pets que possuem o nome fornecido no parâmetro da URL.",
+        "tags": ["Pets"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Nome do pet que deseja buscar",
+            "schema": {
+              "type": "string",
+              "example": "João"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pets encontrados com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "pet_id": {
+                        "type": "string",
+                        "description": "ID do pet",
+                        "example": "abc123"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Nome do pet",
+                        "example": "João Silva"
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "E-mail do pet",
+                        "example": "joao@example.com"
+                      },
+                      "phone": {
+                        "type": "string",
+                        "description": "Telefone do pet",
+                        "example": "559999999999"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de validação ou erro ao buscar o pet",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem de erro",
+                      "example": "Erro de validação"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "description": "Detalhes dos erros de validação",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "string",
+                            "description": "Campo com erro",
+                            "example": "name"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro de validação",
+                            "example": "Nome é obrigatório"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pets/{pet_id}": {
+      "delete": {
+        "summary": "Deleta um pet pelo ID",
+        "tags": ["Pets"],
+        "parameters": [
+          {
+            "name": "pet_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "ID do pet a ser deletado",
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Pet deletado com sucesso"
+          },
+          "400": {
+            "description": "Erro de validação ou erro ao deletar o pet",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem de erro",
+                      "example": "Erro de validação"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "description": "Detalhes dos erros de validação",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "string",
+                            "description": "Campo com erro",
+                            "example": "pet_id"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro de validação",
+                            "example": "ID inválido"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pet não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem informando que o pet não foi encontrado",
+                      "example": "Pet não encontrado"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
