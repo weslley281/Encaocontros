@@ -2,7 +2,7 @@ class Pet {
   dog_id: number;
   animal: string;
   name: string;
-  age: number;
+  birthday: Date;
   breed: string;
   gender: string;
   owner_id: number;
@@ -16,7 +16,7 @@ class Pet {
     dog_id: number,
     animal: string,
     name: string,
-    age: number,
+    birthday: Date,
     breed: string,
     gender: string,
     owner_id: number,
@@ -29,7 +29,7 @@ class Pet {
     this.dog_id = dog_id;
     this.animal = animal;
     this.name = name;
-    this.age = age;
+    this.birthday = birthday;
     this.breed = breed;
     this.gender = gender;
     this.owner_id = owner_id;

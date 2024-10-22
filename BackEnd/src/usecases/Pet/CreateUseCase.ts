@@ -7,7 +7,7 @@ import { IPetRepository } from '../../repositories/IPetRepository';
 interface IRequest {
   animal: string;
   name: string;
-  age: number;
+  birthday: Date;
   breed: string;
   gender: string;
   owner_id: number;

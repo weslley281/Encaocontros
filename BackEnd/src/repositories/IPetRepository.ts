@@ -5,7 +5,7 @@ interface IPetRepository {
   create({
     animal,
     name,
-    age,
+    birthday,
     breed,
     gender,
     owner_id,
@@ -17,7 +17,7 @@ interface IPetRepository {
     pet_id,
     animal,
     name,
-    age,
+    birthday,
     breed,
     gender,
     owner_id,

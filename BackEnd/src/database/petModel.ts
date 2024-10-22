@@ -16,9 +16,9 @@ const petModel = connection.define('pets', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  age: {
-    type: DataTypes.DOUBLE,
-    allowNull: false,
+  birthday: {
+    type: DataTypes.DATE,
+    allowNull: true,
   },
   breed: {
     type: DataTypes.STRING,
@@ -47,7 +47,7 @@ const petModel = connection.define('pets', {
   photo: {
     type: DataTypes.STRING,
     allowNull: true,
-  }
+  },
 });
 
 function createTablePets() {

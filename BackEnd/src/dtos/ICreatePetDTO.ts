@@ -3,7 +3,7 @@ export interface ICreatePetDTO {
   photo?: string;
   animal: string;
   name: string;
-  age: number;
+  birthday: Date;
   breed: string;
   gender: string;
   owner_id: number;
