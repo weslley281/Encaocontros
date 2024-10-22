@@ -3,10 +3,7 @@ import { z } from 'zod';
 import { UpdatePetUseCase } from '../../../usecases/Pet/UpdateUseCase';
 
 const updatePetSchema = z.object({
-  pet_id: z
-    .string()
-    .transform((val) => parseInt(val, 10))
-    .refine((val) => !isNaN(val), { message: 'ID inválido' }),
+  pet_id: z.number().int(),
   animal: z.string().min(1, { message: 'O tipo do usuário é obrigatório' }),
   name: z.string().min(1, { message: 'O tipo do usuário é obrigatório' }),
   birthday: z.coerce.date({ message: 'Formato de data inválido' }),
@@ -19,7 +16,7 @@ const updatePetSchema = z.object({
   health_conditions: z
     .string()
     .min(1, { message: 'O tipo do usuário é obrigatório' }),
-  pedigree: z.boolean()
+  pedigree: z.boolean(),
 });
 
 class UpdatePetController {

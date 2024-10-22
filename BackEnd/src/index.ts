@@ -7,6 +7,7 @@ import swaggerFile from './swagger.json';
 import { createConnectionDataBase } from './config/database';
 
 import { userRoutes } from './routes/userRoutes';
+import { petRoutes } from './routes/petRoutes';
 
 import { createTableUser } from './database/userModel';
 import { createTablePets } from './database/petModel';
@@ -16,6 +17,7 @@ import { createTableMatches } from './database/matchModel';
 import { createTableMessages } from './database/messageModel';
 import { createTableNotifications } from './database/notificationModel';
 import { createTableSubscriptions } from './database/subscriptionModel';
+
 
 dotenv.config();
 
@@ -35,6 +37,7 @@ app.use(express.json());
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use('/users', userRoutes);
+app.use('/pets', petRoutes);
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
