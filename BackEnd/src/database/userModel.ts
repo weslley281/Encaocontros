@@ -47,7 +47,7 @@ const userModel = connection.define('users', {
 
 function createTableUser() {
   return userModel.sync({ force: false }).then(() => {
-    console.log('*******Tabela de cliente criada com sucesso*******');
+    console.log('*******Tabela de usuários criada com sucesso*******');
   });
 }
 

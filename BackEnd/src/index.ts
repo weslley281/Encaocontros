@@ -1,17 +1,33 @@
 import express, { Request, Response, NextFunction } from 'express';
-import { userRoutes } from './routes/userRoutes';
 import swaggerUi from 'swagger-ui-express';
+import dotenv from 'dotenv';
+
 import swaggerFile from './swagger.json';
+
 import { createConnectionDataBase } from './config/database';
+
+import { userRoutes } from './routes/userRoutes';
+
 import { createTableUser } from './database/userModel';
 import { createTablePets } from './database/petModel';
-import dotenv from 'dotenv';
+import { createTableAdvertisements } from './database/advertisementModel';
+import { createTableFavorites } from './database/favoriteModel';
+import { createTableMatches } from './database/matchModel';
+import { createTableMessages } from './database/messageModel';
+import { createTableNotifications } from './database/notificationModel';
+import { createTableSubscriptions } from './database/subscriptionModel';
 
 dotenv.config();
 
 createConnectionDataBase();
 createTableUser();
 createTablePets();
+createTableAdvertisements();
+createTableFavorites();
+createTableMatches();
+createTableMessages();
+createTableNotifications();
+createTableSubscriptions();
 
 const app = express();
 

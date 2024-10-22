@@ -1,11 +1,13 @@
 import { Sequelize } from 'sequelize';
-
+import dotenv from 'dotenv';
+dotenv.config();
+//process.env.JWT_SECRET
 const connection = new Sequelize(
-  'encaocontros',
-  'root',
-  '',
+  process.env.DB_NAME || 'encaocontros',
+  process.env.DB_USER || 'root',
+  process.env.DB_PASS || '',
   {
-    host: 'localhost',
+    host: process.env.DB_HOST || 'localhost',
     dialect: 'mysql',
     // pool: {
     //   max: 5,
