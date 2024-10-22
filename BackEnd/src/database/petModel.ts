@@ -44,6 +44,10 @@ const petModel = connection.define('pets', {
     type: DataTypes.BOOLEAN,
     allowNull: true,
   },
+  photo: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  }
 });
 
 function createTablePets() {
