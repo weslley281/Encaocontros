@@ -1,8 +1,8 @@
-import { GetAllUserByNameUseCase } from "../../../usecases/User/GetAllByNameUseCase";
-import { UserRepository } from "../../../repositories/implementations/UserRepository";
-import { GetAllUserByNameController } from "./GetAllByNameController";
+import { GetAllPetByNameUseCase } from "../../../usecases/Pet/GetAllByNameUseCase";
+import { PetRepository } from "../../../repositories/implementations/PetRepository";
+import { GetAllPetByNameController } from "./GetAllByNameController";
 
 
-const usersRepository = UserRepository.getInstance();
-const getAllUserByNameUseCase = new GetAllUserByNameUseCase(usersRepository);
-export const getAllUserByNameController = new GetAllUserByNameController(getAllUserByNameUseCase);
+const petsRepository = PetRepository.getInstance();
+const getAllPetByNameUseCase = new GetAllPetByNameUseCase(petsRepository);
+export const getAllPetByNameController = new GetAllPetByNameController(getAllPetByNameUseCase);

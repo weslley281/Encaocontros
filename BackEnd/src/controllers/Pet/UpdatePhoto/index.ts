@@ -1,9 +1,9 @@
-import { UserRepository } from "../../../repositories/implementations/UserRepository";
-import { UpdateUserPhotoUseCase } from "../../../usecases/User/UpdatePhotoUseCase";
-import { UpdateUserPhotoController } from "./UpdatePhotoController";
+import { PetRepository } from "../../../repositories/implementations/PetRepository";
+import { UpdatePetPhotoUseCase } from "../../../usecases/Pet/UpdatePhotoUseCase";
+import { UpdatePetPhotoController } from "./UpdatePhotoController";
 
-const usersRepository = UserRepository.getInstance();
-const updateUserPhotoUseCase = new UpdateUserPhotoUseCase(usersRepository);
-const updateUserPhotoController = new UpdateUserPhotoController(updateUserPhotoUseCase);
+const petsRepository = PetRepository.getInstance();
+const updatePetPhotoUseCase = new UpdatePetPhotoUseCase(petsRepository);
+const updatePetPhotoController = new UpdatePetPhotoController(updatePetPhotoUseCase);
 
-export { updateUserPhotoController };
+export { updatePetPhotoController };

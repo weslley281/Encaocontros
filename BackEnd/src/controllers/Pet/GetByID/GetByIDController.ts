@@ -1,27 +1,27 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
-import { GetUserByIDUseCase } from 'src/usecases/User/GetByIDUseCase';
+import { GetPetByIDUseCase } from 'src/usecases/Pet/GetByIDUseCase';
 
 // Esquema de validação do Zod
-const getUserByIDControllerSchema = z.object({
-  user_id: z
+const getPetByIDControllerSchema = z.object({
+  pet_id: z
     .string()
     .transform((val) => parseInt(val, 10))
     .refine((val) => !isNaN(val), { message: 'ID inválido' }),
 });
 
-class GetUserByIDController {
-  constructor(private getUserByIDUseCase: GetUserByIDUseCase) {}
+class GetPetByIDController {
+  constructor(private getPetByIDUseCase: GetPetByIDUseCase) {}
 
   async handle(req: Request, res: Response): Promise<Response> {
     try {
-      const validatedData = getUserByIDControllerSchema.parse({
-        user_id: req.params.user_id,
+      const validatedData = getPetByIDControllerSchema.parse({
+        pet_id: req.params.pet_id,
       });
 
-      const user = await this.getUserByIDUseCase.execute(validatedData);
+      const pet = await this.getPetByIDUseCase.execute(validatedData);
 
-      return res.status(200).json(user);
+      return res.status(200).json(pet);
     } catch (error: any) {
       if (error instanceof z.ZodError) {
         return res.status(400).json({
@@ -35,4 +35,4 @@ class GetUserByIDController {
   }
 }
 
-export { GetUserByIDController };
+export { GetPetByIDController };

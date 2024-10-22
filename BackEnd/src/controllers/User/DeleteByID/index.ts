@@ -1,10 +1,10 @@
-import { GetUserByIDUseCase } from "../../../usecases/User/GetByIDUseCase";
+import { DeleteUserByIDUseCase } from "../../../usecases/User/DeleteByIDUseCase";
 import { UserRepository } from "../../../repositories/implementations/UserRepository";
-import { GetUserByIDController } from "./DeleteByIDController";
+import { DeleteUserByIDController } from "./DeleteByIDController";
 
 
 const usersRepository = UserRepository.getInstance();
-const getUserByIDUseCase = new GetUserByIDUseCase(usersRepository);
-const getUserByIDController = new GetUserByIDController(getUserByIDUseCase);
+const deleteUserByIDUseCase = new DeleteUserByIDUseCase(usersRepository);
+const deleteUserByIDController = new DeleteUserByIDController(deleteUserByIDUseCase);
 
-export { getUserByIDController };
+export { deleteUserByIDController };

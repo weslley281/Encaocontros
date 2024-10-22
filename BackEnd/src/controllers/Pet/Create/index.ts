@@ -1,9 +1,9 @@
-import { UserRepository } from "../../../repositories/implementations/UserRepository";
-import { CreateUserUseCase } from "../../../usecases/User/CreateUseCase";
-import { CreateUserController } from "./CreateController";
+import { PetRepository } from '../../../repositories/implementations/PetRepository';
+import { CreatePetUseCase } from '../../../usecases/Pet/CreateUseCase';
+import { CreatePetController } from './CreateController';
 
-const usersRepository = UserRepository.getInstance();
-const createUserUseCase = new CreateUserUseCase(usersRepository);
-const createUserController = new CreateUserController(createUserUseCase);
+const petsRepository = PetRepository.getInstance();
+const createPetUseCase = new CreatePetUseCase(petsRepository);
+const createPetController = new CreatePetController(createPetUseCase);
 
-export { createUserController };
+export { createPetController };

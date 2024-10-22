@@ -1,30 +1,37 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
-import { UpdateUserUseCase } from '../../../usecases/User/UpdateUseCase';
+import { UpdatePetUseCase } from '../../../usecases/Pet/UpdateUseCase';
 
-const updateUserSchema = z.object({
-  user_id: z
+const updatePetSchema = z.object({
+  pet_id: z
     .string()
     .transform((val) => parseInt(val, 10))
     .refine((val) => !isNaN(val), { message: 'ID inválido' }),
-  user_type: z.string().min(1, { message: 'O tipo do usuário é obrigatório' }),
-  name: z.string().min(1, { message: 'Nome é obrigatório' }),
-  phone: z.string().min(10, { message: 'Telefone deve ter mais de 10 caracteres' }),
-  email: z.string().email({ message: 'Formato do email é inválido' }),
-  cpf: z.string().min(11, { message: 'CPF deve ter mais de 11 dígitos' }),
-  birthday: z.coerce.date({ message: 'Formato de data inválido' })
+  animal: z.string().min(1, { message: 'O tipo do usuário é obrigatório' }),
+  name: z.string().min(1, { message: 'O tipo do usuário é obrigatório' }),
+  birthday: z.coerce.date({ message: 'Formato de data inválido' }),
+  breed: z.string().min(1, { message: 'O tipo do usuário é obrigatório' }),
+  gender: z.string().min(1, { message: 'O tipo do usuário é obrigatório' }),
+  owner_id: z.number().int(),
+  vaccination_status: z
+    .string()
+    .min(1, { message: 'O tipo do usuário é obrigatório' }),
+  health_conditions: z
+    .string()
+    .min(1, { message: 'O tipo do usuário é obrigatório' }),
+  pedigree: z.boolean()
 });
 
-class UpdateUserController {
-  constructor(private updateUserUseCase: UpdateUserUseCase) {}
+class UpdatePetController {
+  constructor(private updatePetUseCase: UpdatePetUseCase) {}
 
   async handle(req: Request, res: Response): Promise<Response> {
     try {
-      const validatedData = updateUserSchema.parse(req.body);
+      const validatedData = updatePetSchema.parse(req.body);
 
-      const newUser = await this.updateUserUseCase.execute(validatedData);
+      const newPet = await this.updatePetUseCase.execute(validatedData);
 
-      return res.status(201).json(newUser);
+      return res.status(201).json(newPet);
     } catch (error: any) {
       if (error instanceof z.ZodError) {
         return res.status(400).json({
@@ -38,4 +45,4 @@ class UpdateUserController {
   }
 }
 
-export { UpdateUserController };
+export { UpdatePetController };

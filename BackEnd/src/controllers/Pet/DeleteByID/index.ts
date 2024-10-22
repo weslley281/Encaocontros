@@ -1,10 +1,10 @@
-import { GetUserByIDUseCase } from "../../../usecases/User/GetByIDUseCase";
-import { UserRepository } from "../../../repositories/implementations/UserRepository";
-import { GetUserByIDController } from "./DeleteByIDController";
+import { PetRepository } from "../../../repositories/implementations/PetRepository";
+import { DeletePetByIDController } from "./DeleteByIDController";
+import { DeletePetByIDUseCase } from "../../../usecases/Pet/DeleteByIDUseCase";
 
 
-const usersRepository = UserRepository.getInstance();
-const getUserByIDUseCase = new GetUserByIDUseCase(usersRepository);
-const getUserByIDController = new GetUserByIDController(getUserByIDUseCase);
+const petsRepository = PetRepository.getInstance();
+const deletePetByIDUseCase = new DeletePetByIDUseCase(petsRepository);
+const deletePetByIDController = new DeletePetByIDController(deletePetByIDUseCase);
 
-export { getUserByIDController };
+export { deletePetByIDController };

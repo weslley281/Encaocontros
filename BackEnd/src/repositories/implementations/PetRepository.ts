@@ -6,6 +6,14 @@ import { Op } from 'sequelize';
 class PetRepository implements IPetRepository {
   private static INSTANCE: PetRepository;
 
+  public static getInstance() {
+    if (!PetRepository.INSTANCE) {
+      PetRepository.INSTANCE = new PetRepository();
+    }
+
+    return PetRepository.INSTANCE;
+  }
+
   async create({
     animal,
     name,

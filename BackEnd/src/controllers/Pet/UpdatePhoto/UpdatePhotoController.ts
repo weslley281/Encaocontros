@@ -1,17 +1,17 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
-import { UpdateUserPhotoUseCase } from '../../../usecases/User/UpdatePhotoUseCase';
+import { UpdatePetPhotoUseCase } from '../../../usecases/Pet/UpdatePhotoUseCase';
 import { upload } from '../../../config/multer';
 
-const updateUserPhotoSchema = z.object({
-  user_id: z
+const updatePetPhotoSchema = z.object({
+  pet_id: z
     .string()
     .transform((val) => parseInt(val, 10))
     .refine((val) => !isNaN(val), { message: 'ID inválido' }),
 });
 
-class UpdateUserPhotoController {
-  constructor(private updateUserPhotoUseCase: UpdateUserPhotoUseCase) {}
+class UpdatePetPhotoController {
+  constructor(private updatePetPhotoUseCase: UpdatePetPhotoUseCase) {}
 
   async handle(req: Request, res: Response): Promise<Response> {
     try {
@@ -21,8 +21,8 @@ class UpdateUserPhotoController {
           return res.status(400).json({ message: 'Erro ao fazer upload da foto' });
         }
 
-        const { user_id } = req.params;
-        const validatedData = updateUserPhotoSchema.parse(req.body);
+        const { pet_id } = req.params;
+        const validatedData = updatePetPhotoSchema.parse(req.body);
         const photoPath = req.file?.path;
 
         if (!photoPath) {
@@ -30,9 +30,9 @@ class UpdateUserPhotoController {
         }
 
         // Passa o caminho da foto para o use case
-        const updatedUser = await this.updateUserPhotoUseCase.execute(validatedData, photoPath);
+        const updatedPet = await this.updatePetPhotoUseCase.execute(validatedData, photoPath);
 
-        return res.status(200).json(updatedUser);
+        return res.status(200).json(updatedPet);
       });
       
       return res.status(400).json({ message: "Erro ao enviar foto" });
@@ -50,4 +50,4 @@ class UpdateUserPhotoController {
   }
 }
 
-export { UpdateUserPhotoController };
+export { UpdatePetPhotoController };

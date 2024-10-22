@@ -1,25 +1,25 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
-import { DeleteUserByIDUseCase } from 'src/usecases/User/DeleteByIDUseCase';
+import { DeletePetByIDUseCase } from 'src/usecases/Pet/DeleteByIDUseCase';
 
 // Esquema de validação do Zod
-const deleteUserByIDControllerSchema = z.object({
-  user_id: z
+const deletePetByIDControllerSchema = z.object({
+  pet_id: z
     .string()
     .transform((val) => parseInt(val, 10))
     .refine((val) => !isNaN(val), { message: 'ID inválido' }),
 });
 
-class DeleteUserByIDController {
-  constructor(private deleteUserByIDUseCase: DeleteUserByIDUseCase) {}
+class DeletePetByIDController {
+  constructor(private deletePetByIDUseCase: DeletePetByIDUseCase) {}
 
   async handle(req: Request, res: Response): Promise<Response> {
     try {
-      const validatedData = deleteUserByIDControllerSchema.parse({
-        user_id: req.params.user_id,
+      const validatedData = deletePetByIDControllerSchema.parse({
+        pet_id: req.params.pet_id,
       });
 
-      const isDeleted = await this.deleteUserByIDUseCase.execute(validatedData);
+      const isDeleted = await this.deletePetByIDUseCase.execute(validatedData);
 
       return res.status(204).json(isDeleted);
     } catch (error: any) {
@@ -35,4 +35,4 @@ class DeleteUserByIDController {
   }
 }
 
-export { DeleteUserByIDController };
+export { DeletePetByIDController };
