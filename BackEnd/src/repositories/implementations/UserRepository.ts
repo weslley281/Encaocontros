@@ -3,7 +3,7 @@ import { ICreateUserDTO, IUserRepository } from '../IUserRepository';
 import { userModel } from '../../database/userModel';
 import { Op } from 'sequelize';
 
-class UserRepository implements IUserRepository {  
+class UserRepository implements IUserRepository {
   private static INSTANCE: UserRepository;
 
   public static getInstance() {
@@ -43,7 +43,7 @@ class UserRepository implements IUserRepository {
     phone,
     email,
     cpf,
-    birthday
+    birthday,
   }: ICreateUserDTO): Promise<Object> {
     const user: any = await userModel.update(
       {
@@ -53,7 +53,7 @@ class UserRepository implements IUserRepository {
         phone,
         email,
         cpf,
-        birthday
+        birthday,
       },
       { where: { user_id } }
     );
@@ -66,8 +66,8 @@ class UserRepository implements IUserRepository {
         phone,
         email,
         cpf,
-        birthday
-      }
+        birthday,
+      };
     } else {
       return { message: 'Error' };
     }
@@ -80,7 +80,7 @@ class UserRepository implements IUserRepository {
   }
 
   async findByEmail(email: string): Promise<User> {
-    const user: any = await userModel.findOne({ where: { email} });
+    const user: any = await userModel.findOne({ where: { email } });
 
     return user;
   }
@@ -114,7 +114,7 @@ class UserRepository implements IUserRepository {
         },
       },
     });
-  
+
     return users;
   }
 
@@ -130,20 +130,18 @@ class UserRepository implements IUserRepository {
   }
 
   async updateUserPhoto(user_id: number, photo: string): Promise<Object> {
-  // O update retorna um array onde a primeira posição é a contagem e a segunda são os registros afetados
-  const [affectedCount, affectedRows] = await userModel.update(
-    { photo }, // Supondo que você adicionou a coluna 'photo' ao seu modelo
-    { where: { user_id }, returning: true } // 'returning: true' para receber os dados atualizados
-  );
+    // O update retorna um array onde a primeira posição é a contagem e a segunda são os registros afetados
+    const [affectedCount, affectedRows] = await userModel.update(
+      { photo }, // Supondo que você adicionou a coluna 'photo' ao seu modelo
+      { where: { user_id }, returning: true } // 'returning: true' para receber os dados atualizados
+    );
 
-  if (affectedCount === 0) {
-    throw new Error('Usuário não encontrado');
+    if (affectedCount === 0) {
+      throw new Error('Usuário não encontrado');
+    }
+
+    return affectedRows[0]; // Retorna o primeiro usuário atualizado
   }
-
-  return affectedRows[0]; // Retorna o primeiro usuário atualizado
-}
-
-
 
   async deleteById(user_id: number): Promise<boolean> {
     const deletedCount = await userModel.destroy({
