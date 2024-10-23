@@ -30,6 +30,7 @@ class Pet {
     this.animal = animal;
     this.name = name;
     this.birthday = birthday;
+    this.birthday = birthday;
     this.breed = breed;
     this.gender = gender;
     this.owner_id = owner_id;

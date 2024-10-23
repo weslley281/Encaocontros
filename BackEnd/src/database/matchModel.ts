@@ -27,11 +27,6 @@ const matchModel = connection.define('matches', {
     type: DataTypes.INTEGER.UNSIGNED,
     allowNull: false, // Referência ao segundo pet
   },
-  matched_at: {
-    type: DataTypes.DATE,
-    allowNull: false, // Data e hora em que o match ocorreu
-    defaultValue: DataTypes.NOW,
-  },
   status: {
     type: DataTypes.ENUM(...matchStatusEnum), // Definindo o campo como ENUM
     allowNull: false,
