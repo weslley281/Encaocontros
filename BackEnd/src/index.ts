@@ -17,6 +17,7 @@ import { createTableMatches } from './database/matchModel';
 import { createTableMessages } from './database/messageModel';
 import { createTableNotifications } from './database/notificationModel';
 import { createTableSubscriptions } from './database/subscriptionModel';
+import { matchRoutes } from './routes/matchRoutes';
 
 
 dotenv.config();
@@ -38,6 +39,7 @@ app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use('/users', userRoutes);
 app.use('/pets', petRoutes);
+app.use('/matches', matchRoutes);
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
