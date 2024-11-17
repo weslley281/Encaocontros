@@ -67,7 +67,7 @@ class MatchRepository implements IMatchRepository {
     return matchs;
   }
 
-  async findAllByIdPet(pet_id: string): Promise<Match[]> {
+  async findAllByIdPet(pet_id: number): Promise<Match[]> {
     const matchs: any = await matchModel.findAll({
       where: {
         [Op.or]: [

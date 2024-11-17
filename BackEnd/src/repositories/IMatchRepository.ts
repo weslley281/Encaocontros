@@ -18,7 +18,7 @@ interface IMatchRepository {
     status,
   }: ICreateMatchDTO): Promise<Object>;
   findById(match_id: number): Promise<Match>;
-  findAllByIdPet(pet_id: string): Promise<Match[]>;
+  findAllByIdPet(pet_id: number): Promise<Match[]>;
   findAllMatch(): Promise<Match[]>;
   deleteById(match_id: number): Promise<Boolean>;
 }
