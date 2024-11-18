@@ -1,47 +1,38 @@
-import { Image, StyleSheet, Platform, ScrollView, Text, View } from 'react-native';
+import { StyleSheet} from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
-import { Box } from 'native-base';
+import { NativeBaseProvider, Box, Center, Heading, Text, Button } from 'native-base';
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }: { navigation: any }) {
+  const handleGetStarted = () => {
+    navigation.navigate('Login'); // Altere para a próxima tela que você deseja implementar
+  };
+
   return (
-    <Box flex={1} bg="#A7C7E7" safeArea>
-      <View>
-        <Text>EnCãoContros!</Text>
-        <HelloWave />
-      </View>
-      <View>
-        <Text>Step 1: Try it</Text>
-        <Text>
-          Edit <Text>app/(tabs)/index.tsx</Text> to see changes.
-          Press{' '}
-          <Text>
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </Text>{' '}
-          to open developer tools.
-        </Text>
-      </View>
-      <View style={styles.stepContainer}>
-        <Text>Step 2: Explore</Text>
-        <Text>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </Text>
-      </View>
-      <View style={styles.stepContainer}>
-        <Text>Step 3: Get a fresh start</Text>
-        <Text>
-          When you're ready, run{' '}
-          <Text>npm run reset-project</Text> to get a fresh{' '}
-          <Text>app</Text> directory. This will move the current{' '}
-          <Text>app</Text> to{' '}
-          <Text>app-example</Text>.
-        </Text>
-      </View>
-   </Box>
+    <NativeBaseProvider>
+      <Box flex={1} bg="#007fff" safeArea>
+        <Center flex={1} px={4}>
+          <Heading size="xl" color="#FFB74D" mb={4}>
+            EnCãoContros
+          </Heading>
+
+          <Text textAlign="center" color="#F2E6D7" fontSize="lg" mb={8}>
+          Encontre o par perfeito para o seu amigo de quatro patas! Entre,
+          conheça, e combine encontros para seus cães.
+          </Text>
+          
+          <Button
+          onPress={handleGetStarted}
+          bg="#229f64"
+          _pressed={{ bg: "#FFA726" }}
+          size="lg"
+          borderRadius="full"
+        >
+          Começar
+        </Button>
+        </Center>
+      </Box>
+    </NativeBaseProvider>
   );
 }
 
