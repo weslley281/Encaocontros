@@ -16,7 +16,7 @@ import { api } from '@services/api';
 export function SignUp() {
   const { navigate, goBack } = useNavigation<any>();
 
-  const [dojo, setDojo] = useState('');
+  const [name, setName] = useState('');
   const [selectedState, setSelectedState] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
@@ -53,9 +53,9 @@ export function SignUp() {
     }
   }
 
-  async function registerDojo() {
+  async function registerUser() {
     if (
-      dojo === '' ||
+      name === '' ||
       selectedState === null ||
       phoneNumber === '' ||
       email === '' ||
@@ -69,7 +69,7 @@ export function SignUp() {
     }
 
     const obj = {
-      dojo,
+      name,
       password,
       address_line1: addressLine1,
       address_line2: addressLine2,
@@ -83,7 +83,7 @@ export function SignUp() {
     console.log(obj);
 
     try {
-      const response = await api.post('dojos/create', obj);
+      const response = await api.post('names/create', obj);
       console.log(response.status);
       Alert.alert('Alerta', 'Conta criado com sucesso: ' + response.status);
       navigate('signIn');
@@ -113,8 +113,8 @@ export function SignUp() {
 
           <Input
             placeholder="Nome"
-            onChangeText={(text: string) => setDojo(text)}
-            value={dojo}
+            onChangeText={(text: string) => setName(text)}
+            value={name}
           />
           <Input
             placeholder="Endereço Linha 1"
@@ -168,7 +168,7 @@ export function SignUp() {
             value={password}
           />
 
-          <Button title="Criar e Acessar" onPress={() => registerDojo()} />
+          <Button title="Criar e Acessar" onPress={() => registerUser()} />
         </Center>
 
         <Button

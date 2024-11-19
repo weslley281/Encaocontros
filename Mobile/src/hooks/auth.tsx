@@ -14,19 +14,15 @@ interface AuthProviderProps {
 }
 
 interface User {
-  id_dojo: string;
-  dojo: string;
+  user_id: number;
+  photo: string;
+  user_type: string;
+  name: string;
   phone: string;
   email: string;
-  address_line1: string;
-  address_line2: string;
-  city: string;
-  state: string;
-  country: string;
+  cpf: string;
+  birthday: Date;
   password: string;
-  createdAt: string;
-  updatedAt: string;
-  token: string;
 }
 
 interface IAuthContextData {
@@ -42,26 +38,25 @@ function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>({} as User);
   const [userStorageLoading, setUserStorageLoading] = useState(true);
 
-  const userStorageKey = '@tokenFerraz:user';
+  const userStorageKey = '@tokenEncaoContros:user';
 
   async function signIn(email: string, password: string) {
     try {
-      const responseLogin = await api.post('/dojos/login', { email, password });
+      const responseLogin = await api.post('/users/auth', { email, password });
       const responseGet = await api.get(
-        `/dojos/id/${responseLogin.data.id_dojo}`
+        `/users/id/${responseLogin.data.id_dojo}`
       );
 
       const userLogged = {
-        id_dojo: responseLogin.data.id_dojo,
-        dojo: responseGet.data.dojo,
-        phone: responseGet.data.phone,
-        email: responseGet.data.email,
-        address_line1: responseGet.data.address_line1,
-        address_line2: responseGet.data.address_line2,
-        city: responseGet.data.city,
-        state: responseGet.data.state,
-        country: responseGet.data.country,
-        password: responseGet.data.password,
+        user_id: responseLogin.data.user_id,
+        photo: responseLogin.data.photo,
+        user_type: responseLogin.data.user_type,
+        name: responseLogin.data.name,
+        phone: responseLogin.data.phone,
+        email: responseLogin.data.email,
+        cpf: responseLogin.data.cpf,
+        birthday: responseLogin.data.birthday,
+        password: responseLogin.data.password,
         createdAt: responseGet.data.createdAt,
         updatedAt: responseGet.data.updatedAt,
         token: responseLogin.data.token,
