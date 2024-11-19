@@ -44,7 +44,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     try {
       const responseLogin = await api.post('/users/auth', { email, password });
       const responseGet = await api.get(
-        `/users/id/${responseLogin.data.id_dojo}`
+        `/users/id/${responseLogin.data.user_id}`
       );
 
       const userLogged = {

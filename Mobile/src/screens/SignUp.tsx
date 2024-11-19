@@ -99,7 +99,7 @@ export function SignUp() {
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      <VStack backgroundColor={'blueGray.500'} flex={1} px={10} pb={16}>
+      <VStack backgroundColor={'blue.800'} flex={1} px={10} pb={16}>
         <Center my={24}>
           <LogoSvg />
           <Text color="gray.100" fontSize="sm">

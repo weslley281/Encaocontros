@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ferraz_dojos_mobile",
-    "slug": "ferraz_dojos_mobile",
+    "name": "encaocontros_mobile",
+    "slug": "encaocontros_mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
