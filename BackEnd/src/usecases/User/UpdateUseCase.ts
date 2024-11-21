@@ -11,6 +11,13 @@ interface IRequest {
   email: string;
   cpf: string;
   birthday: Date;
+  addressLine1: string;
+  addressLine2: string;
+  country: string;
+  state: string;
+  city: string;
+  neighborhood: string;
+  postalCode: string;
 }
 
 export class UpdateUserUseCase {

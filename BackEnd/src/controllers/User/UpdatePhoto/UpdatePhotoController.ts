@@ -4,10 +4,7 @@ import { UpdateUserPhotoUseCase } from '../../../usecases/User/UpdatePhotoUseCas
 import { upload } from '../../../config/multer';
 
 const updateUserPhotoSchema = z.object({
-  user_id: z
-    .string()
-    .transform((val) => parseInt(val, 10))
-    .refine((val) => !isNaN(val), { message: 'ID inválido' }),
+  user_id: z.number().int(),
 });
 
 class UpdateUserPhotoController {

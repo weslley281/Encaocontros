@@ -22,6 +22,13 @@ class UserRepository implements IUserRepository {
     cpf,
     birthday,
     password,
+    addressLine1,
+    addressLine2,
+    country,
+    state,
+    city,
+    neighborhood,
+    postalCode,
   }: ICreateUserDTO): Promise<User> {
     const user: any = await userModel.create({
       user_type,
@@ -31,6 +38,13 @@ class UserRepository implements IUserRepository {
       cpf,
       birthday,
       password,
+      addressLine1,
+      addressLine2,
+      country,
+      state,
+      city,
+      neighborhood,
+      postalCode,
     });
 
     return user;
@@ -44,6 +58,13 @@ class UserRepository implements IUserRepository {
     email,
     cpf,
     birthday,
+    addressLine1,
+    addressLine2,
+    country,
+    state,
+    city,
+    neighborhood,
+    postalCode,
   }: ICreateUserDTO): Promise<Object> {
     const user: any = await userModel.update(
       {
@@ -54,6 +75,13 @@ class UserRepository implements IUserRepository {
         email,
         cpf,
         birthday,
+        addressLine1,
+        addressLine2,
+        country,
+        state,
+        city,
+        neighborhood,
+        postalCode,
       },
       { where: { user_id } }
     );
