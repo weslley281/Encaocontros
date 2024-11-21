@@ -31,7 +31,7 @@ export function SignIn() {
   const [password, setPassword] = useState('');
   const [loading, setIsLoading] = useState(false);
 
-  async function login() {
+  async function login() { 
     try {
       setIsLoading(true);
       return await signIn(email, password);
