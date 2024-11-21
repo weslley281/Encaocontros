@@ -10,6 +10,13 @@ const createUserSchema = z.object({
   cpf: z.string().min(11, { message: 'CPF deve ter mais de 11 dígitos' }),
   birthday: z.coerce.date({ message: 'Formato de data inválido' }),
   password: z.string().min(6, { message: 'A senha deve ter pelo menos 6 caracteres' }),
+  addressLine1: z.string().min(1, { message: 'O Endereço é obrigatório' }),
+  addressLine2: z.string().min(1, { message: 'O Endereço é obrigatório' }),
+  country: z.string().min(1, { message: 'O País é obrigatório' }),
+  state: z.string().min(1, { message: 'O Estado é obrigatório' }),
+  city: z.string().min(1, { message: 'A cidade é obrigatório' }),
+  neighborhood: z.string().min(1, { message: 'O Bairro é obrigatório' }),
+  postalCode: z.string().min(1, { message: 'O código postal é obrigatório' }),
 });
 
 class CreateUserController {

@@ -8,6 +8,13 @@ class User {
   cpf: string;
   birthday: Date;
   password: string;
+  addressLine1: string;
+  addressLine2: string;
+  country: string;
+  state: string;
+  city: string;
+  neighborhood: string;
+  postalCode: string;
 
   constructor(
     user_id: number,
@@ -18,7 +25,14 @@ class User {
     email: string,
     cpf: string,
     birthday: Date,
-    password: string
+    password: string,
+    addressLine1: string,
+    addressLine2: string,
+    country: string,
+    state: string,
+    city: string,
+    neighborhood: string,
+    postalCode: string,
   ) {
     this.user_id = user_id;
     this.user_type = user_type;
@@ -29,6 +43,13 @@ class User {
     this.cpf = cpf;
     this.birthday = birthday;
     this.password = password;
+    this.addressLine1 = addressLine1;
+    this.addressLine2 = addressLine2;
+    this.country = country;
+    this.state = state;
+    this.city = city;
+    this.neighborhood = neighborhood;
+    this.postalCode = postalCode;
   }
 
   getClientDetails(): string {

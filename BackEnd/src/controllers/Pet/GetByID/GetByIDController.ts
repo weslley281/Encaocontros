@@ -4,10 +4,7 @@ import { GetPetByIDUseCase } from 'src/usecases/Pet/GetByIDUseCase';
 
 // Esquema de validação do Zod
 const getPetByIDControllerSchema = z.object({
-  pet_id: z
-    .string()
-    .transform((val) => parseInt(val, 10))
-    .refine((val) => !isNaN(val), { message: 'ID inválido' }),
+  pet_id: z.number().int(),
 });
 
 class GetPetByIDController {

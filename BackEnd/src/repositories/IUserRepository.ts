@@ -10,6 +10,13 @@ interface IUserRepository {
     cpf,
     user_type,
     password,
+    addressLine1,
+    addressLine2,
+    country,
+    state,
+    city,
+    neighborhood,
+    postalCode,
   }: ICreateUserDTO): Promise<User>;
   update({
     user_id,
@@ -19,6 +26,13 @@ interface IUserRepository {
     birthday,
     cpf,
     user_type,
+    addressLine1,
+    addressLine2,
+    country,
+    state,
+    city,
+    neighborhood,
+    postalCode,
   }: ICreateUserDTO): Promise<Object>;
   findById(user_id: number): Promise<User>;
   findByEmail(email: string): Promise<User>;

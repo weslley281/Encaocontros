@@ -42,7 +42,35 @@ const userModel = connection.define('users', {
   photo: {
     type: DataTypes.STRING,
     allowNull: true,
-  }
+  },
+  addressLine1: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  addressLine2: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  country: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  state: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  city: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  neighborhood: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  postalCode: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
 });
 
 function createTableUser() {

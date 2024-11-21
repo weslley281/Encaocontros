@@ -4,10 +4,7 @@ import { DeleteUserByIDUseCase } from 'src/usecases/User/DeleteByIDUseCase';
 
 // Esquema de validação do Zod
 const deleteUserByIDControllerSchema = z.object({
-  user_id: z
-    .string()
-    .transform((val) => parseInt(val, 10))
-    .refine((val) => !isNaN(val), { message: 'ID inválido' }),
+  user_id: z.number().int(),
 });
 
 class DeleteUserByIDController {
