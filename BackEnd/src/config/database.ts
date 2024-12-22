@@ -4,8 +4,8 @@ dotenv.config();
 //process.env.JWT_SECRET
 const connection = new Sequelize(
   process.env.DB_NAME || 'encaocontros',
-  process.env.DB_USER || 'root',
-  process.env.DB_PASS || '',
+  process.env.DB_USER || 'encaocontros',
+  process.env.DB_PASS || 'Enc@ocontros12',
   {
     host: process.env.DB_HOST || 'localhost',
     dialect: 'mysql',
