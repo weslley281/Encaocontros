@@ -7,7 +7,7 @@ const connection = new Sequelize(
   process.env.DB_USER || 'encaocontros',
   process.env.DB_PASS || 'Enc@ocontros12',
   {
-    host: process.env.DB_HOST || 'localhost',
+    host: process.env.DB_HOST || 'encaocontros.mysql.uhserver.com',
     dialect: 'mysql',
     // pool: {
     //   max: 5,
