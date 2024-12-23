@@ -23,6 +23,13 @@ interface User {
   cpf: string;
   birthday: Date;
   password: string;
+  addressLine1: string;
+  addressLine2: string;
+  country: string;
+  state: string;
+  city: string;
+  neighborhood: string;
+  postalCode: string;
 }
 
 interface IAuthContextData {
@@ -63,12 +70,18 @@ function AuthProvider({ children }: AuthProviderProps) {
         createdAt: responseGet.data.createdAt,
         updatedAt: responseGet.data.updatedAt,
         token: responseLogin.data.token,
+        addressLine1: responseGet.data.addressLine1,
+        addressLine2: responseGet.data.addressLine2,
+        country: responseGet.data.country,
+        state: responseGet.data.state,
+        city: responseGet.data.city,
+        neighborhood: responseGet.data.neighborhood,
+        postalCode: responseGet.data.postalCode,
       };
 
       setUser(userLogged);
       //console.log(userLogged);
       await AsyncStorage.setItem(userStorageKey, JSON.stringify(userLogged));
-      
     } catch (error: any) {
       if (error.response) {
         console.error('Erro do servidor:', error.response.data);
