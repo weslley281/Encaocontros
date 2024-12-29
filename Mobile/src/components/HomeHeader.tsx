@@ -5,24 +5,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import { loadDojoStorageData } from '@utils/dojo';
 import { api } from '@services/api';
 import { useAuth } from '@hooks/auth';
-
-interface IDojo {
-  id_dojo: string;
-  dojo: string;
-  phone: string;
-  email: string;
-  address_line1: string;
-  address_line2: string;
-  city: string;
-  state: string;
-  country: string;
-  paid_out: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
 
 export function HomeHeader() {
   const { signOut, user } = useAuth();

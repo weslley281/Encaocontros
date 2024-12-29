@@ -12,14 +12,21 @@ import { api } from '@services/api';
 
 export function Profile() {
   const { user } = useAuth();
-  const [dojo, setDojo] = useState(user.dojo);
-  const [selectedState, setSelectedState] = useState(user.state);
+  const [name, setName] = useState(user.name);
   const [phoneNumber, setPhoneNumber] = useState(user.phone);
   const [email, setEmail] = useState(user.email);
-  const [addressLine1, setAddressLine1] = useState(user.address_line1);
-  const [addressLine2, setAddressLine2] = useState(user.address_line2);
-  const [city, setCity] = useState(user.city);
+
+  const [birthday, setBirthday] = useState(user.birthday);
+  const [cpf, setCpf] = useState(user.cpf);
+  const [user_type, setUser_type] = useState(user.user_type);
+  const [addressLine1, setAddressLine1] = useState(user.addressLine1);
+  const [addressLine2, setAddressLine2] = useState(user.addressLine2);
   const [country, setCountry] = useState(user.country);
+  const [state, setState] = useState(user.state);
+  const [city, setCity] = useState(user.city);
+  const [neighborhood, setNeighborhood] = useState(user.neighborhood);
+  const [postalCode, setPostalCode] = useState(user.postalCode);
+  const [password, setPassword] = useState(user.password);
 
   function formatPhoneNumber() {
     // Limpa qualquer caractere que não seja número
@@ -46,10 +53,10 @@ export function Profile() {
     }
   }
 
-  async function updateDojo() {
+  async function updateUser() {
     if (
-      dojo === '' ||
-      selectedState === null ||
+      name === '' ||
+      state === null ||
       phoneNumber === '' ||
       email === '' ||
       addressLine1 === '' ||
@@ -61,12 +68,12 @@ export function Profile() {
     }
 
     const obj = {
-      id_dojo: user.id_dojo,
-      dojo,
+      user_id: user.user_id,
+      name,
       address_line1: addressLine1,
       address_line2: addressLine2,
       city,
-      state: selectedState,
+      state,
       country,
       phone: phoneNumber,
       email,
@@ -75,7 +82,7 @@ export function Profile() {
     console.log(obj);
 
     try {
-      const response = await api.put('dojos/update', obj);
+      const response = await api.put('users/update', obj);
       console.log(response.status);
       Alert.alert('Alerta', 'Conta alterada com sucesso: ' + response.status);
     } catch (error: any) {
@@ -101,8 +108,8 @@ export function Profile() {
 
           <Input
             placeholder="Nome"
-            onChangeText={(text: string) => setDojo(text)}
-            value={dojo}
+            onChangeText={(text: string) => setName(text)}
+            value={name}
           />
           <Input
             placeholder="Endereço Linha 1"
@@ -123,8 +130,8 @@ export function Profile() {
           <RNPickerSelect
             placeholder={{ label: 'Selecione um estado', value: null }}
             items={states}
-            onValueChange={(value) => setSelectedState(value)}
-            value={selectedState}
+            onValueChange={(value) => setState(value)}
+            value={state}
           />
 
           <Input
@@ -148,7 +155,7 @@ export function Profile() {
             value={email}
           />
 
-          <Button title="Criar e Acessar" onPress={() => updateDojo()} />
+          <Button title="Criar e Acessar" onPress={() => updateUser()} />
         </Center>
       </VStack>
     </ScrollView>
